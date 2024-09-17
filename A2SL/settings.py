@@ -131,5 +131,5 @@ STATICFILES_DIRS = [
 ]
 CSRF_TRUSTED_ORIGINS = [
     'https://backend-31us.onrender.com',
-    'yourfrontenddomain.com',  # Replace with your frontend domain
+      # Replace with your frontend domain
 ]
