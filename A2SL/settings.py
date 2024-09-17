@@ -19,6 +19,7 @@ import nltk
 NLTK_DATA_DIR = os.path.join(BASE_DIR, 'nltk_data')
 nltk.data.path.append(NLTK_DATA_DIR)
 # download nltk utilities
+nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('wordnet')
 nltk.download('omw-1.4')
@@ -131,5 +132,5 @@ STATICFILES_DIRS = [
 ]
 CSRF_TRUSTED_ORIGINS = [
     'https://backend-31us.onrender.com',
-      # Replace with your frontend domain
+    # Replace with your frontend domain
 ]
