@@ -20,7 +20,9 @@ def main():
 
     # Modify the runserver command to bind to 0.0.0.0:<PORT>
     if len(sys.argv) > 1 and sys.argv[1] == 'runserver':
-        sys.argv.append(f'0.0.0.0:{port}')
+        # If no address/port is provided, add '0.0.0.0:<PORT>'
+        if len(sys.argv) == 2:  # Only `runserver` is present, no addrport
+            sys.argv.append(f'0.0.0.0:{port}')
     
     execute_from_command_line(sys.argv)
 
