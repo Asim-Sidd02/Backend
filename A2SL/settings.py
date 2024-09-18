@@ -11,14 +11,16 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import nltk
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# Below code added by RanjeetKumbhar01
-import nltk
+
+# NLTK configuration
 NLTK_DATA_DIR = os.path.join(BASE_DIR, 'nltk_data')
 nltk.data.path.append(NLTK_DATA_DIR)
-# download nltk utilities
+
+# Download NLTK utilities
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('wordnet')
@@ -35,7 +37,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Added whitenoise
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -129,9 +131,15 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [    
-    os.path.join(BASE_DIR,"assets"),
+    os.path.join(BASE_DIR, 'assets'),
 ]
+
+# Whitenoise static files storage
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# CSRF Trusted Origins
 CSRF_TRUSTED_ORIGINS = [
-    'https://backend-31us.onrender.com',
-    # Replace with your frontend domain
+    'https://backend-31us.onrender.com',  # Replace with your frontend domain
 ]
+
+# Ensure you run `python manage.py collectstatic` during deployment to gather static files
