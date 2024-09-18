@@ -17,10 +17,10 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
-    
-    # Check if the runserver command is being used and bind to 0.0.0.0:<PORT>
+
+    # Modify the runserver command to bind to 0.0.0.0:<PORT>
     if len(sys.argv) > 1 and sys.argv[1] == 'runserver':
-        sys.argv[2] = f'0.0.0.0:{port}'
+        sys.argv.append(f'0.0.0.0:{port}')
     
     execute_from_command_line(sys.argv)
 
